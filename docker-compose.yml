@@ -1,0 +1,31 @@
+version: '2'
+services:
+  nginx:
+    build: docker/nginx
+    command: nginx -g "daemon off;"
+    links:
+      - php
+    ports:
+      - "80:80"
+  php:
+    build: ./docker/php-fpm
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    command: php-fpm
+    links:
+      - db
+      - cache
+    ports:
+      - "9000:9000"
+  db:
+    build: ./docker/mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: lumen
+      MYSQL_USER: lumen
+      MYSQL_PASSWORD: secret
+  cache:
+    image: memcached
