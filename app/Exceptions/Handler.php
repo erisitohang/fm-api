@@ -8,9 +8,11 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Traits\RestExceptionHandlerTrait;
 
 class Handler extends ExceptionHandler
 {
+    use RestExceptionHandlerTrait;
     /**
      * A list of the exception types that should not be reported.
      *
@@ -41,10 +43,10 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $e
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+        return $this->getJsonResponseForException($request, $e);
     }
 }

@@ -12,5 +12,8 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return [
+        "success" =>  true,
+        "message" => $router->app->version()
+    ];
 });
