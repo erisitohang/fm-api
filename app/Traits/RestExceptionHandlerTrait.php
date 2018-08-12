@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Exceptions\ValidationHttpException;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -20,6 +21,9 @@ trait RestExceptionHandlerTrait
         switch(true) {
             case $this->isModelNotFoundException($e):
                 $retval = $this->modelNotFound();
+                break;
+            case $this->isValidationHttpException($e):
+                $retval = $this->validationHttpException($e->getErrors());
                 break;
             default:
                 $retval = $this->badRequest();
@@ -75,5 +79,15 @@ trait RestExceptionHandlerTrait
     protected function isModelNotFoundException(Exception $e)
     {
         return $e instanceof ModelNotFoundException;
+    }
+
+    protected function isValidationHttpException(Exception $e)
+    {
+        return $e instanceof ValidationHttpException;
+    }
+
+    protected function validationHttpException($message, $statusCode = 422)
+    {
+        return $this->jsonResponse(['error' => $message], $statusCode);
     }
 }

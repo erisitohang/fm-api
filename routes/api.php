@@ -17,3 +17,7 @@ $router->get('/', function () use ($router) {
         "message" => $router->app->version()
     ];
 });
+
+$router->post('/user', [
+    'as' => 'user', 'uses' => 'Api\UserController@store'
+]);
