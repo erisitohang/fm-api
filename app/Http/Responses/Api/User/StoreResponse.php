@@ -31,6 +31,8 @@ class StoreResponse extends BaseResponse implements Responsable
      */
     public function toResponse($request)
     {
+        $request = $this->getRequest();
+
         $this->validation($request);
 
         $data = [

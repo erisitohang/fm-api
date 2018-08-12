@@ -25,7 +25,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: lumen
-      MYSQL_USER: lumen
-      MYSQL_PASSWORD: secret
   cache:
     image: memcached
