@@ -3,7 +3,9 @@
 namespace App\Http\Responses\Api\User;
 
 use App\Http\Responses\BaseResponse;
+use App\Models\User;
 use App\Services\UserService;
+use App\Transformers\UserTransformer;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Validation\ValidationException;
 
@@ -36,12 +38,14 @@ class StoreResponse extends BaseResponse implements Responsable
         $this->validation($request);
 
         $data = [
-            'email' => $request->get('email'),
-            'name' => $request->get('name'),
+            self::EMAIL => $request->get(self::EMAIL),
+            self::NAME => $request->get(self::NAME),
         ];
 
-        return $this->userService->store($data);
+        /** @var User $user */
+        $user = $this->userService->store($data);
 
+         return (new UserTransformer())->transform($user);
     }
 
     /**
@@ -51,8 +55,8 @@ class StoreResponse extends BaseResponse implements Responsable
     private function validation($request)
     {
         $validator = \Validator::make($request->all(), [
-            'email' => 'required|email|unique:users',
-            'name' => 'required',
+            self::EMAIL => 'required|email|unique:users',
+            self::NAME => 'required'
         ]);
         if ($validator->fails()) {
             $this->errorBadRequest($validator);

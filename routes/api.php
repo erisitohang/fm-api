@@ -21,3 +21,15 @@ $router->get('/', function () use ($router) {
 $router->post('/user', [
     'as' => 'user', 'uses' => 'Api\UserController@store'
 ]);
+
+$router->post('/friend', [
+    'as' => 'friend', 'uses' => 'Api\RelationshipController@store'
+]);
+
+$router->post('/friend/mine', [
+    'as' => 'friend.mine', 'uses' => 'Api\RelationshipController@mine'
+]);
+
+$router->post('/friend/common', [
+    'as' => 'friend.mine', 'uses' => 'Api\RelationshipController@common'
+]);

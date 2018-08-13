@@ -16,4 +16,17 @@ class EloquentUserRepository extends AbstractEloquentRepository implements UserR
 
         return $user;
     }
+
+    /**
+     * @param array $inIds
+     * @param array $notInIds
+     * @return mixed
+     */
+    public function inAndNotIn($inIds, $notInIds)
+    {
+        return $this->model
+            ->whereIn('id', $inIds)
+            ->whereNotIn('id', $notInIds)
+            ->get();
+    }
 }

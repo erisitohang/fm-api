@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class BaseResponse
 {
+    const NUMBER_OF_EMAILS_REQUIRED = 2;
+    const SUCCESS = "success";
+    const FRIENDS = "friends";
+    const COUNT = "count";
+    const FIELD = 'field';
+    const CODE = 'code';
+    const EMAIL = 'email';
+    const NAME = 'name';
+    const EMAILS_ARE_REQUIRED = 'Emails are required';
 
     /**
      * This method is the temporary solution to resolve the issue
@@ -31,8 +40,8 @@ class BaseResponse
             foreach ($messages as $field => $errors) {
                 foreach ($errors as $error) {
                     $result[] = [
-                        'field' => $field,
-                        'code' => $error,
+                        self::FIELD => $field,
+                        self::CODE => $error,
                     ];
                 }
             }
