@@ -23,7 +23,7 @@ class UserService
     }
 
     /**
-     * @param string $emails
+     * @param array $emails
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function findEmail($emails)

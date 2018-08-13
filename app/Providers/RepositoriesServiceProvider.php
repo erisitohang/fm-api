@@ -3,10 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Relationship;
+use App\Models\Subscriber;
 use App\Models\User;
 use App\Repositories\Contracts\RelationshipRepositoryInterface;
+use App\Repositories\Contracts\SubscribeRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\EloquentRelationshipRepository;
+use App\Repositories\EloquentSubscribeRepository;
 use App\Repositories\EloquentUserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +29,10 @@ class RepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(RelationshipRepositoryInterface::class, function () {
             return new EloquentRelationshipRepository(new Relationship());
         });
+
+        $this->app->bind(SubscribeRepositoryInterface::class, function () {
+            return new EloquentSubscribeRepository(new Subscriber());
+        });
     }
 
     /**
@@ -37,7 +44,8 @@ class RepositoriesServiceProvider extends ServiceProvider
     {
         return [
             UserRepositoryInterface::class,
-            RelationshipRepositoryInterface::class
+            RelationshipRepositoryInterface::class,
+            SubscribeRepositoryInterface::class
         ];
     }
 }

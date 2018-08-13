@@ -11,14 +11,6 @@ class EloquentRelationshipRepository extends AbstractEloquentRepository implemen
     /**
      * @inheritdoc
      */
-    public function save(array $data)
-    {
-        return parent::save($data);
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function findUserId($userId)
     {
         return $this->model

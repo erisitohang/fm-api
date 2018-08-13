@@ -60,6 +60,7 @@ abstract class AbstractEloquentRepository implements BaseRepositoryInterface
      */
     public function findBy(array $searchCriteria = [])
     {
+        return $this->model->where($searchCriteria)->get();
     }
 
     /**

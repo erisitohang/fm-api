@@ -69,7 +69,7 @@ class StoreResponse extends BaseResponse implements Responsable
         }
 
         $this->friends = $this->userService->findEmail($request->get('friends'));
-        if (count($this->friends) !== 2) {
+        if (count($this->friends) !== self::NUMBER_OF_EMAILS_REQUIRED) {
             throw new ValidationHttpException([self::EMAILS_ARE_REQUIRED]);
         }
     }

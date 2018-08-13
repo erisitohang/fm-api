@@ -25,11 +25,20 @@ $router->post('/user', [
 $router->post('/friend', [
     'as' => 'friend', 'uses' => 'Api\RelationshipController@store'
 ]);
-
 $router->post('/friend/mine', [
     'as' => 'friend.mine', 'uses' => 'Api\RelationshipController@mine'
 ]);
-
 $router->post('/friend/common', [
-    'as' => 'friend.mine', 'uses' => 'Api\RelationshipController@common'
+    'as' => 'friend.common', 'uses' => 'Api\RelationshipController@common'
+]);
+
+$router->post('/subscribe', [
+    'as' => 'subscribe.store', 'uses' => 'Api\SubscriberController@store'
+]);
+$router->post('/subscribe/block', [
+    'as' => 'subscribe.block', 'uses' => 'Api\SubscriberController@block'
+]);
+
+$router->post('/feed', [
+    'as' => 'feed.index', 'uses' => 'Api\FeedController@index'
 ]);
