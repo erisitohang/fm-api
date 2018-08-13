@@ -7,7 +7,6 @@
 * Composer
 
 OR
-* Composer
 * Docker
 
 
