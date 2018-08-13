@@ -5,6 +5,7 @@
 * PHP >= 7.1.0
 * Database MySQL
 * Composer
+* Webserver Nngix/Apache
 
 OR
 * Docker
@@ -15,8 +16,8 @@ Follow the below procedures for installing Application
 
 ### Clone this repo
 ```shell
-$ git@github.com:erisitohang/fm-api.git fm-api
-$ cd mailbox
+$ git clone git@github.com:erisitohang/fm-api.git fm-api
+$ cd fm-api
 ```
 ### Run Server (docker)
 ```shell
@@ -27,7 +28,7 @@ $ docker-compose up --build -d
 
 Go in to php server
 ```shell
-$ docker exec -it friend-management_php_1 bash
+$ docker exec -it fm-api_php_1 bash
 ```
 install composer
 ```shell
@@ -52,10 +53,12 @@ $ php artisan db:seed
 
 ### Running the tests
 
-Navigate to the project root and run vendor/bin/phpunit after installing all the composer dependencies.
 ```shell
 $ ./vendor/bin/phpunit
 ```
+
+### API server url
+http://localhost
 
 ## List of routes
 ```$xslt
@@ -89,7 +92,7 @@ POST /user
 {
     "email": "test1@test.com",
     "name": "John Doe",
-    "id": 107
+    "id": 1
 }
 ```
 
@@ -174,7 +177,7 @@ POST /subscribe
 ```
 
 ### Block updates from an email address (5)
-POST /block 
+POST /subscribe/block 
 #### POST
 ```json
 {
@@ -190,7 +193,7 @@ POST /block
 ```
 
 ### Retrieve all email addresses that can receive updates from an email address (6)
-POST /block 
+POST /feed 
 #### POST
 ```json
 {
