@@ -76,6 +76,13 @@ abstract class AbstractEloquentRepository implements BaseRepositoryInterface
      */
     public function update(Model $model, array $data)
     {
+        $fillAbleProperties = $this->model->getFillable();
+        foreach ($data as $key => $value) {
+            if (in_array($key, $fillAbleProperties)) {
+                $model->$key = $value;
+            }
+        }
+        $model->save();
     }
 
     /**

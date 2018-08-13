@@ -61,7 +61,6 @@ class SubscriberService
             $data = [
                 $field => true
             ];
-
             $this->subscribeRepository->update($subscriber, $data);
         } else {
             $data[$field] =  true;

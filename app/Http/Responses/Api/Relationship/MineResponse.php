@@ -59,7 +59,7 @@ class MineResponse extends BaseResponse implements Responsable
 
         $friends = array_map(function($friend) use ($email) {
             return $friend[RelationshipService::USER_ONE_EMAIL] === $email ?
-                $friend[RelationshipService::USER_TWO_ID] : $friend[RelationshipService::USER_ONE_ID];
+                $friend[RelationshipService::USER_TWO_EMAIL] : $friend[RelationshipService::USER_ONE_EMAIL];
         }, $friendList);
 
         return [
