@@ -25,6 +25,7 @@ class UsersTest extends \TestCase
             'email'     => 'test@test.com',
             'name' => 'Mike'
         ]);
+
         $this->assertResponseStatus(422);
     }
 }

@@ -70,12 +70,12 @@ class CommonResponse extends BaseResponse implements Responsable
         $mutualFriendships = array_unique(
             array_intersect(
                 array_merge(
-                    $user1[RelationshipService::USER_ONE_EMAIL],
-                    $user1[RelationshipService::USER_TWO_EMAIL]
+                    $user1[RelationshipService::USER_ONE_ID],
+                    $user1[RelationshipService::USER_TWO_ID]
                 ),
                 array_merge(
-                    $user2[RelationshipService::USER_ONE_EMAIL],
-                    $user2[RelationshipService::USER_TWO_EMAIL]
+                    $user2[RelationshipService::USER_ONE_ID],
+                    $user2[RelationshipService::USER_TWO_ID]
                 )
             )
         );
