@@ -7,3 +7,4 @@ RUN apt-get install -y php5-memcached \
     && apt-get install -y libz-dev libmemcached-dev \
     && pecl install memcached \
     && echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
